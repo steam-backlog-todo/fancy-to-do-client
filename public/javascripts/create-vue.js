@@ -68,7 +68,9 @@ let createVue = new Vue({
   el: '#vueApp',
   data: {
     userID: localStorage.getItem('userID'),
-    jwtToken: localStorage.getItem('jwtToken')
+    jwtToken: localStorage.getItem('jwtToken'),
+    localhost: 'http://localhost:3000',
+    deploy: 'http://phase-two.teddydevstack.com'
   },
   methods: {
     onSubmit: function(data) {
@@ -77,7 +79,7 @@ let createVue = new Vue({
       send.append('name', data.name);
       send.append('category', data.category);
       send.append('desc', data.description);
-      axios.post(`http://localhost:3000/tasks/add/${this.userID}`, send)
+      axios.post(`${this.deploy}/tasks/add/${this.userID}`, send)
         .then(response => {
           console.log(response);
           // window.location.href = '#';

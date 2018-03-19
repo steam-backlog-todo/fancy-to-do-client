@@ -129,13 +129,15 @@ let createVue = new Vue({
       send.append('token', this.jwtToken);
       send.append('steamid', data.steamid);
       send.append('userID', this.userID);
-      axios.put(`http://localhost:3000/users/steamid/`, send)
+      let localhost = 'http://localhost:3000';
+      let deploy = 'http://phase-two.teddydevstack.com';
+      axios.put(`${deploy}/users/steamid/`, send)
         .then(response => {
           console.log(response);
           // execute secondary steamVue mission!
 
           // run steam api
-          axios.post(`http://localhost:3000/steam/`, send)
+          axios.post(`${deploy}/steam/`, send)
             .then(resGames => {
               console.log(resGames);
               // create a new vue
@@ -157,7 +159,9 @@ let createVue = new Vue({
       send.append('name', data.name);
       send.append('category', data.category);
       send.append('desc', data.desc);
-      axios.post(`http://localhost:3000/tasks/add/${this.userID}`, send)
+      let localhost = 'http://localhost:3000';
+      let deploy = 'http://phase-two.teddydevstack.com';
+      axios.post(`${deploy}/tasks/add/${this.userID}`, send)
         .then(response => {
           console.log(response);
           // window.location.href = '#';

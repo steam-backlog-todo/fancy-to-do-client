@@ -98,15 +98,18 @@ function testAPI(token) {
     console.log('Successful login for: ' + response.name);
     $('#login-process').text(`${response.name}`)
 
+
     // axios
-    axios.post('http://localhost:3000/fb-api/facebook', {response:response})
+    let localhost = 'http://localhost:3000';
+    let deploy = 'http://phase-two.teddydevstack.com';
+    axios.post(`${deploy}/fb-api/facebook`, {response:response})
       .then((serverRes) => {
         console.log(serverRes)
         if (serverRes.data) {
           console.log('Successful data registration for: ' + serverRes.data.fbData.name);
           localStorage.setItem('jwtToken', serverRes.data.token);
           localStorage.setItem('userID', serverRes.data.userData._id);
-          // localStorage.setItem('profile_pic_URL', response.data.fbData.picture.data.url);
+          // localStorage.setItem('profile_pic_URL', response.data.fbData.picture.data.url) ;
           // console.log(localStorage.profile_pic_URL);
           // console.log($('#user-welcome').text());
 

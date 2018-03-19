@@ -170,18 +170,19 @@ let taskAPI = 'http://teddydevstack.com/tasks/search';
 let localhostA  = 'http://localhost:3000/tasks';
 let localhostB  = 'http://localhost:3000/tasks/search';
 let localhostC  = 'http://localhost:3000/tasks/done';
+let deploy = 'http://phase-two.teddydevstack.com'
 let retrieved, doneData;
 
 
 function getBackLog(){
   let send = new FormData()
   send.append('token', localStorage.getItem('jwtToken'))
-  return axios.post(localhostB, send)
+  return axios.post(`${deploy}/tasks/search`, send)
 }
 function getDone(){
   let send = new FormData()
   send.append('token', localStorage.getItem('jwtToken'))
-  return axios.post(localhostC, send)
+  return axios.post(`${deploy}/tasks/done`, send)
 }
 axios.all([getBackLog(), getDone()])
   .then(axios.spread(function(response, done){
@@ -194,13 +195,15 @@ axios.all([getBackLog(), getDone()])
       data: {
         userID: localStorage.getItem('userID'),
         jwtToken: localStorage.getItem('jwtToken'),
+        deployURL: 'http://phase-two.teddydevstack.com',
         taskData: retrieved,
         doneData: doneData
       },
       methods: {
         updateListen: function(payload) {
           console.log(payload);
-          let updateurl = 'http://localhost:3000/tasks/finish'
+          let deploy = 'http://phase-two.teddydevstack.com'
+          let updateurl = `${this.deployURL}/tasks/finish`
           let data = new FormData()
           data.append('token', this.jwtToken)
           data.append('userID', this.userID)
