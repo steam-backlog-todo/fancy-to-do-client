@@ -15,24 +15,7 @@ function statusChangeCallback(response) {
 
     const fbToken = response.authResponse.accessToken;
     testAPI(fbToken);
-    // axios
-    // axios.post('http://localhost:3000/fb-api/facebook', {token:fbToken})
-    //   .then((response) => {
-    //     console.log(response)
-    //     if (response.data) {
-    //       console.log('Successful login for: ' + response.data.fbData.name);
-    //       localStorage.setItem('token', response.data.token);
-    //       localStorage.setItem('userID', response.data.userData._id);
-    //       localStorage.setItem('userName', response.data.userData.userName);
-    //       // localStorage.setItem('profile_pic_URL', response.data.fbData.picture.data.url);
-    //       // console.log(localStorage.profile_pic_URL);
-    //       // console.log($('#user-welcome').text());
-    //       $('#user-welcome').text(`Welcome, ${localStorage.getItem('userName')}`)
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
+
 
   } else {
     // The person is not logged into your app or we are unable to tell.
@@ -43,7 +26,8 @@ function statusChangeCallback(response) {
     $('.fb-logout-button').hide(500);
     $('#proceed').hide(500);
     // $('#group-menu').hide();
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwtToken')
+    localStorage.removeItem('userID');
     // console.log(localStorage.token);
   }
 }
@@ -113,8 +97,25 @@ function testAPI(token) {
     console.log(response);
     console.log('Successful login for: ' + response.name);
     $('#login-process').text(`${response.name}`)
-    // document.getElementById('status').innerHTML =
-    //   'Thanks for logging in, ' + response.name + '!';
+
+    // axios
+    axios.post('http://localhost:3000/fb-api/facebook', {response:response})
+      .then((serverRes) => {
+        console.log(serverRes)
+        if (serverRes.data) {
+          console.log('Successful data registration for: ' + serverRes.data.fbData.name);
+          localStorage.setItem('jwtToken', serverRes.data.token);
+          localStorage.setItem('userID', serverRes.data.userData._id);
+          // localStorage.setItem('profile_pic_URL', response.data.fbData.picture.data.url);
+          // console.log(localStorage.profile_pic_URL);
+          // console.log($('#user-welcome').text());
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
   });
 }
 
@@ -128,9 +129,9 @@ function testAPI(token) {
 
 function logout(){
   FB.logout((response)=>{
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwtToken');
     localStorage.removeItem('userID');
-    localStorage.removeItem('userName');
+    // localStorage.removeItem('userName');
     statusChangeCallback(response);
     location.reload();
   })

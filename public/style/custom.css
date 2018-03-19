@@ -14,7 +14,15 @@
         }
     }
 }
-
+#spinner {
+  background: #4267b2;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  text-align: center;
+  width: 250px;
+  display: inline-block;
+}
 .logout-style {
   background: #4267b2;
   border-radius: 5px;
@@ -29,4 +37,7 @@
 }
 .inline {
   display: inline-block;
+}
+.border-none {
+  border:none;
 }

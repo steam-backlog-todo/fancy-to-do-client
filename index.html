@@ -6,9 +6,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" href="./public/style/custom.css">
-    <title></title>
+    <title>To-do Backlogs</title>
   </head>
   <body>
+
+    <nav class="navbar is-transparent is-black">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <h1 class="title has-text-white">BACKLOG</h1>
+        </a>
+        <div class="navbar-burger burger" data-target="mainNavigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="mainNavigation" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+          <a class="navbar-item" href="/task.html">
+            Task
+          </a>
+          <a class="navbar-item" href="/import.html">
+            Import
+          </a>
+        </div>
+
+
+      </div>
+    </nav>
+
     <div id="fb-root"></div>
     <section class="hero is-fullheight is-bold is-dark">
 
@@ -25,15 +55,7 @@
               <div class="tile">
                 <div class="tile is-parent is-vertical">
                   <article class="tile is-child notification is-primary">
-                    <div class="is-loading" id="spinner"
-                      style="
-                          background: #4267b2;
-                          border-radius: 5px;
-                          color: white;
-                          height: 40px;
-                          text-align: center;
-                          width: 250px;
-                          display: inline-block;">
+                    <div class="is-loading" id="spinner">
                       <a class="button is-loading" style="background:none; border:none;">Loading</a>
                     </div>
                     <div class="fb-login-button" data-scope="public_profile, email" onlogin="checkLoginState();" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
@@ -43,12 +65,10 @@
                   </article>
                   <article class="tile is-child notification is-warning" id="proceed" style="display:none">
                     <p class="title">Proceed</p>
-                    <button class="button is-light " type="button" name="button">
-                      Create new Task
-                    </button>
-                    <button class="button is-light " type="button" name="button">
-                      Import from Steam
-                    </button>
+                    <a href="/create.html" class="button is-light">Create new Task</a>
+                    <a href="/import.html" class="button is-light">Import from Steam</a>
+                    <a href="/task.html" class="button is-light">My Task</a>
+
                   </article>
                 </div>
                 </div>
@@ -68,6 +88,7 @@
 
     </section>
 
+    <script src="./public/javascripts/navbar.js" charset="utf-8"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

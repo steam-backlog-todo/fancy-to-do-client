@@ -2,9 +2,64 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="./public/style/custom.css">
+    <title>Create new Task</title>
   </head>
   <body>
+    <nav class="navbar is-transparent is-black">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <h1 class="title has-text-white">BACKLOG</h1>
+        </a>
+        <div class="navbar-burger burger" data-target="mainNavigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
+      <div id="mainNavigation" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+          <a class="navbar-item" href="task.html">
+            Task
+          </a>
+          <a class="navbar-item" href="import.html">
+            Import
+          </a>
+        </div>
+
+
+      </div>
+    </nav>
+
+    <section class="hero is-medium is-bold is-dark" id="vueApp">
+      <div class="hero-body">
+        <div class="tile is-ancestor ">
+          <div class="tile is-3">
+          </div>
+          <div class="tile is-6">
+
+            <input-comp v-on:newtask="onSubmit"></input-comp>
+
+          </div>
+          <div class="tile is-3">
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+
+
+    <script src="./public/javascripts/navbar.js" charset="utf-8"></script>
+    <script src="./lib/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./public/javascripts/create-vue.js" charset="utf-8"></script>
   </body>
 </html>
