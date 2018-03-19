@@ -2,9 +2,94 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="./public/style/custom.css">
+    <title>Task</title>
   </head>
   <body>
 
+    <nav class="navbar is-transparent is-black">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <h1 class="title has-text-white">BACKLOG</h1>
+        </a>
+        <div class="navbar-burger burger" data-target="mainNavigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="mainNavigation" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+          <a class="navbar-item" href="/task.html">
+            Task
+          </a>
+          <a class="navbar-item" href="/import.html">
+            Import
+          </a>
+        </div>
+
+
+      </div>
+    </nav>
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <div class="level">
+            <!-- left side -->
+            <div class="level-left">
+              <div class="level-item">
+                <h1 class="title">Current To-Dos</h1>
+              </div>
+            </div>
+
+            <!-- right side -->
+            <div class="level-right">
+              <div class="level-item">
+                <a class="button" href="/create.html">Add Task</a>
+                <a class="button" href="/import.html">Import</a>
+                <a class="button" href="/task.html">My Backlog</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="" id="vueApp">
+      <section class="hero is-small is-light" >
+        <div class="hero-body">
+
+          <task-comp v-bind:todo="taskData" v-on:finish="updateListen"></task-comp>
+
+        </div>
+
+      </section>
+
+      <section class="hero is-small is-light" >
+        <div class="hero-body">
+
+          <completed-comp v-bind:done="doneData"></completed-comp>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <script src="./public/javascripts/navbar.js" charset="utf-8"></script>
+    <script src="./lib/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./public/javascripts/task-vue.js" charset="utf-8"></script>
   </body>
 </html>
